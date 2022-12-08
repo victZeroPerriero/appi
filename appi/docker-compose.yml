@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  postgres:
+    image: 'postgres:13'
+    container_name: 'book-postgres'
+    ports:
+      - 15432:5432
+    environment:
+      - 'POSTGRES_USER=user'
+      - 'POSTGRES_PASSWORD=user'
+      - 'POSTGRES_DB=user-book-db'

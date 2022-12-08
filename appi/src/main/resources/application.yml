@@ -1,0 +1,16 @@
+server:
+  port : 8081
+  servlet:
+    context-path: /
+
+spring:
+  jpa:
+    database: POSTGRESQL
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:postgresql://localhost:15432/user-book-db
+    username: user
+    password: user
+    driverClassName: org.postgresql.Driver
