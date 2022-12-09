@@ -8,4 +8,5 @@ import java.util.List;
 
 public interface LibraryJournalServce {
     BookDto findBookByUser(Long bookId);
+    BookDto findBookByUserName(String name);
 }

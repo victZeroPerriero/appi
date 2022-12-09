@@ -3,7 +3,6 @@ package com.user.appi.service;
 import com.user.appi.dto.BookDto;
 import com.user.appi.mapper.LibraryJournalMapper;
 import com.user.appi.model.Book;
-import com.user.appi.model.LibraryJournal;
 import com.user.appi.model.User;
 import com.user.appi.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +25,27 @@ public class LibraryJournalServiceIml implements LibraryJournalServce {
         return libraryJournalMapper.fromEntityToDto(getBookFromList(bookId));
     }
 
+    @Override
+    public BookDto findBookByUserName(String name) {
+        return  libraryJournalMapper.fromEntityToDto(
+                getUserFromList(name)
+        );
+    }
+
     private Book getBookFromList(Long bookId){
         return userRepo.findAll().stream()
                 .map(User::getBookList)
                 .flatMap(books -> books.stream().filter(book -> book.getId().equals(bookId)))
                 .findFirst().get();
     }
+
+    private Book getUserFromList(String name){
+         return userRepo.findAll().stream()
+                .filter(users -> users.getFirstName().equals(name) || users.getLastName().equals(name))
+                .findFirst().get()
+                 .getBookList().stream()
+                 .findFirst()
+                 .get();
+    }
+
 }

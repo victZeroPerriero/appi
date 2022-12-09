@@ -21,4 +21,9 @@ public class LibraryController {
     public BookDto findBookById(@PathVariable("id") Long id){
         return libraryJournalServce.findBookByUser(id);
     }
+    @GetMapping("find/{name}")
+    public BookDto findBookById(@PathVariable("name")String name){
+        return libraryJournalServce.findBookByUserName(name);
+    }
+
 }
