@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/v1/")
 @Slf4j
@@ -18,6 +20,10 @@ public class UserController {
     @GetMapping("{id}")
     public UserDto getOneDto(@PathVariable("id") Long id){
         return userService.getOneById(id);
+    }
+    @GetMapping
+    public List<UserDto> getAllUsers(){
+        return userService.getAllUsers();
     }
 
     @PostMapping("/add")

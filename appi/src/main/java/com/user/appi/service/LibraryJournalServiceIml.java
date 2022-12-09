@@ -1,6 +1,8 @@
 package com.user.appi.service;
 
 import com.user.appi.dto.BookDto;
+import com.user.appi.listjanr.ResponseByJanrBook;
+import com.user.appi.listjanr.ListJanrBook;
 import com.user.appi.mapper.LibraryJournalMapper;
 import com.user.appi.model.Book;
 import com.user.appi.model.User;
@@ -9,9 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-
-
 
 @Service
 @Transactional
@@ -32,6 +31,16 @@ public class LibraryJournalServiceIml implements LibraryJournalServce {
         );
     }
 
+    @Override
+    public String listJanr(String name) {
+        for (ListJanrBook list : ListJanrBook.values()) {
+            if ( list.getNumber().equals(name) ){
+              return ResponseByJanrBook.VALUE_IS_FIND;
+            }
+        }
+        return ResponseByJanrBook.VALUES_IS_NOT_FOUND;
+    }
+
     private Book getBookFromList(Long bookId){
         return userRepo.findAll().stream()
                 .map(User::getBookList)
@@ -47,5 +56,4 @@ public class LibraryJournalServiceIml implements LibraryJournalServce {
                  .findFirst()
                  .get();
     }
-
 }

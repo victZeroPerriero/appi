@@ -9,4 +9,5 @@ public interface UserService {
     void addUser(UserDto user);
 //    List<UserDto> getAllUsers();
     UserDto getOneById(Long id);
+    List<UserDto> getAllUsers();
 }
